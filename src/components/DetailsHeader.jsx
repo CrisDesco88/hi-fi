@@ -18,7 +18,7 @@ const DetailsHeader = ({ artistId, artistData, songData }) => {
 					className='sm:w-48 w-28 sm:h-48 h-28 rounded-full object-cover border-2 shadow-xl shadow-black'
 				/>
 				<div className='ml-5'>
-					<p className='font-bold sm:text-3xl text-xl'>
+					<p className='font-bold sm:text-3xl text-xl text-white'>
 						{artistId ? artist?.name : songData?.title}
 					</p>
 					{!artistId && (
