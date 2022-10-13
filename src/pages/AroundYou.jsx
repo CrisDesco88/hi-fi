@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Loader, SongCard } from "../components";
+import { getEnvironment } from "../helpers/getEnvironment";
 import { useGetSongsByCountryQuery } from "../redux/sevices/shazamCore";
 
 const AroundYou = () => {
@@ -11,12 +12,13 @@ const AroundYou = () => {
 	const { data, isFetching, error } = useGetSongsByCountryQuery(country);
 	console.log(country);
 
+	const { VITE_GEO_API_KEY } = getEnvironment();
+
+
 	useEffect(() => {
-		//at_0FWCGUPHV3mjvs01a1p97uucrYTLk
+		
 		axios
-			.get(
-				`https://geo.ipify.org/api/v2/country?apiKey=at_0FWCGUPHV3mjvs01a1p97uucrYTLk`
-			)
+			.get(`https://geo.ipify.org/api/v2/country?apiKey=${VITE_GEO_API_KEY}`)
 			.then((res) => setCountry(res?.data?.location?.country))
 			.catch((err) => console.log(err))
 			.finally(() => setLoading(false));
